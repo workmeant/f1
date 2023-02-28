@@ -177,16 +177,22 @@ const works = defineEventHandler(async (event) => {
         var serial_no = element.base_info.serial_no;
         var car_type = element.base_info.car_type;
         if (target_add1.indexOf(element.site_info[0].store_name) !== -1 && target_add2.indexOf(element.site_info[element.site_info.length - 1].store_name) !== -1) {
-          const add_work = await api_add_work(query.token, car_type, serial_no, 3823, 6979);
-          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + element.site_info[0] + " : " + element.site_info[element.site_info.length - 1] + " : " + add_work.code);
-          work_add_1 = element.site_info[0];
-          work_add_2 = element.site_info[element.site_info.length - 1];
+          const diriver_api = await driver(query.token);
+          const car_api = await car_num(query.token, car_type);
+          console.log(diriver_api.data[diriver_api.data.length - 1].id);
+          console.log(car_api.data[car_api.data.length - 1].id);
+          console.log(car_type);
+          const add_work = await api_add_work(query.token, car_type, serial_no, car_api.data[car_api.data.length - 1].id, diriver_api.data[diriver_api.data.length - 1].id);
+          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name + " : " + add_work.code);
+          await linenotify("yotG770JJa5HbexW516KH4piMOYZ2e26vTVrVpZ89gs", "successful : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name + " : " + add_work.code);
+          work_add_1 = element.site_info[0].store_name;
+          work_add_2 = element.site_info[element.site_info.length - 1].store_name;
           work_add_data = element.site_info;
           status = "successful";
           console.log(add_work);
         } else {
-          work_add_1 = element.site_info[0];
-          work_add_2 = element.site_info[element.site_info.length - 1];
+          work_add_1 = element.site_info[0].store_name;
+          work_add_2 = element.site_info[element.site_info.length - 1].store_name;
           work_add_data = element.site_info;
           status = "notfound";
         }
@@ -238,6 +244,55 @@ async function api_add_work(token, car_type, serial_no, car_id, driver_id) {
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
     "body": raw,
+    "method": "POST"
+  });
+  const data = await api.json();
+  return data;
+}
+async function car_num(token, car_type) {
+  var raw = JSON.stringify({
+    "car_type": car_type
+  });
+  const api = await fetch("https://gwapi.fleet.vip/gw/fms/grab_order/car_num", {
+    "headers": {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "th-TH",
+      "cache-control": "no-cache",
+      "content-type": "application/json;charset=UTF-8",
+      "fms-session-id": token,
+      "sec-ch-ua": '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": '"macOS"',
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "Referer": "https://supplier-th.fleet.vip/",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "body": raw,
+    "method": "POST"
+  });
+  const data = await api.json();
+  return data;
+}
+async function driver(token) {
+  const api = await fetch("https://gwapi.fleet.vip/gw/fms/grab_order/driver", {
+    "headers": {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "th-TH",
+      "cache-control": "no-cache",
+      "content-type": "application/json;charset=UTF-8",
+      "fms-session-id": token,
+      "sec-ch-ua": '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": '"macOS"',
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "Referer": "https://supplier-th.fleet.vip/",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "body": "{}",
     "method": "POST"
   });
   const data = await api.json();
