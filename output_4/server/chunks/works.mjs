@@ -176,7 +176,7 @@ const works = defineEventHandler(async (event) => {
       data.data.items.forEach(async (element) => {
         var serial_no = element.base_info.serial_no;
         var car_type = element.base_info.car_type;
-        if (target_add2.indexOf(element.site_info[0].store_name) !== -1 && target_add1.indexOf(element.site_info[element.site_info.length - 1].store_name) !== -1) {
+        if (target_add1.indexOf(element.site_info[0].store_name) !== -1 && target_add2.indexOf(element.site_info[element.site_info.length - 1].store_name) !== -1) {
           const add_work = await api_add_work(query.token, car_type, serial_no, 3823, 6979);
           await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + element.site_info[0] + " : " + element.site_info[element.site_info.length - 1] + " : " + add_work.code);
           work_add_1 = element.site_info[0];
