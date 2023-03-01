@@ -2,6 +2,16 @@ import { defineEventHandler, getQuery } from 'h3';
 
 const car = defineEventHandler(async (event) => {
   const query = getQuery(event);
+  var raw = JSON.stringify({
+    "car_num": query.car_num,
+    "car_company_id": "",
+    "car_state": "",
+    "type": "",
+    "biz_type": "",
+    "size": "",
+    "page_num": "",
+    "page_size": "100"
+  });
   const api = await fetch("https://gwapi.fleet.vip/gw/fms/car/items", {
     "headers": {
       "accept": "application/json, text/plain, */*",
@@ -9,7 +19,7 @@ const car = defineEventHandler(async (event) => {
       "cache-control": "no-cache",
       "content-type": "application/json;charset=UTF-8",
       "fms-session-id": query.token,
-      "sec-ch-ua": '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+      "sec-ch-ua": '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
       "sec-ch-ua-mobile": "?0",
       "sec-ch-ua-platform": '"macOS"',
       "sec-fetch-dest": "empty",
@@ -18,7 +28,7 @@ const car = defineEventHandler(async (event) => {
       "Referer": "https://supplier-th.fleet.vip/",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
-    "body": '{"car_num":"","car_company_id":"","car_state":"","type":"","biz_type":"","size":"","page_num":1,"page_size":200}',
+    "body": raw,
     "method": "POST"
   });
   const data = await api.json();
@@ -36,7 +46,7 @@ const car = defineEventHandler(async (event) => {
       data_code: data.code,
       server: "working",
       status: data.message,
-      data: data.data.items
+      data: data.data
     };
   }
 });

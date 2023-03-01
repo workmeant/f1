@@ -460,63 +460,63 @@ const assets = {
   "/favicon.ico": {
     "type": "image/vnd.microsoft.icon",
     "etag": "\"10be-n8egyE9tcb7sKGr/pYCaQ4uWqxI\"",
-    "mtime": "2023-03-01T02:39:40.660Z",
+    "mtime": "2023-03-01T18:10:17.114Z",
     "size": 4286,
     "path": "../public/favicon.ico"
   },
   "/_nuxt/app.config.8e2ce85c.js": {
     "type": "application/javascript",
     "etag": "\"78-D+t/jk9x+xqX+uuJVLqh6IcjALs\"",
-    "mtime": "2023-03-01T02:39:40.657Z",
+    "mtime": "2023-03-01T18:10:17.113Z",
     "size": 120,
     "path": "../public/_nuxt/app.config.8e2ce85c.js"
   },
   "/_nuxt/entry.c1cc45fd.js": {
     "type": "application/javascript",
     "etag": "\"1ff3c-R1DYfVFxkfiWiMmmOc6DP6x8XR8\"",
-    "mtime": "2023-03-01T02:39:40.655Z",
+    "mtime": "2023-03-01T18:10:17.113Z",
     "size": 130876,
     "path": "../public/_nuxt/entry.c1cc45fd.js"
   },
   "/_nuxt/error-404.23f2309d.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"e2e-ivsbEmi48+s9HDOqtrSdWFvddYQ\"",
-    "mtime": "2023-03-01T02:39:40.653Z",
+    "mtime": "2023-03-01T18:10:17.112Z",
     "size": 3630,
     "path": "../public/_nuxt/error-404.23f2309d.css"
   },
   "/_nuxt/error-404.bde3c992.js": {
     "type": "application/javascript",
     "etag": "\"16ee-jfWhJMO+YEQtTsKNEbvixgkKSJI\"",
-    "mtime": "2023-03-01T02:39:40.650Z",
+    "mtime": "2023-03-01T18:10:17.112Z",
     "size": 5870,
     "path": "../public/_nuxt/error-404.bde3c992.js"
   },
   "/_nuxt/error-500.aa16ed4d.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"79e-7j4Tsx89siDo85YoIs0XqsPWmPI\"",
-    "mtime": "2023-03-01T02:39:40.647Z",
+    "mtime": "2023-03-01T18:10:17.112Z",
     "size": 1950,
     "path": "../public/_nuxt/error-500.aa16ed4d.css"
   },
   "/_nuxt/error-500.d71107e8.js": {
     "type": "application/javascript",
     "etag": "\"77c-/DHAZcArEwsn1ScdHkswJL9YNtE\"",
-    "mtime": "2023-03-01T02:39:40.646Z",
+    "mtime": "2023-03-01T18:10:17.112Z",
     "size": 1916,
     "path": "../public/_nuxt/error-500.d71107e8.js"
   },
   "/_nuxt/error-component.410131c8.js": {
     "type": "application/javascript",
     "etag": "\"466-jowhQd4We+8wTrNjINFVBCWTS3g\"",
-    "mtime": "2023-03-01T02:39:40.645Z",
+    "mtime": "2023-03-01T18:10:17.111Z",
     "size": 1126,
     "path": "../public/_nuxt/error-component.410131c8.js"
   },
   "/_nuxt/index.1dda0260.js": {
     "type": "application/javascript",
     "etag": "\"a6-JPxVy9ul3tG5+NX+omAbmhUOOjo\"",
-    "mtime": "2023-03-01T02:39:40.644Z",
+    "mtime": "2023-03-01T18:10:17.110Z",
     "size": 166,
     "path": "../public/_nuxt/index.1dda0260.js"
   }
@@ -616,6 +616,7 @@ const _f4b49z = eventHandler((event) => {
 });
 
 const _lazy_LKjyac = () => import('../works.mjs');
+const _lazy_uDeair = () => import('../workdemo.mjs');
 const _lazy_QHvh7q = () => import('../login.mjs');
 const _lazy_Pl66US = () => import('../driver.mjs');
 const _lazy_dBZ8Nj = () => import('../car.mjs');
@@ -625,6 +626,7 @@ const _lazy_BCLMF9 = () => import('../handlers/renderer.mjs');
 const handlers = [
   { route: '', handler: _f4b49z, lazy: false, middleware: true, method: undefined },
   { route: '/api/works', handler: _lazy_LKjyac, lazy: true, middleware: false, method: undefined },
+  { route: '/api/workdemo', handler: _lazy_uDeair, lazy: true, middleware: false, method: undefined },
   { route: '/api/login', handler: _lazy_QHvh7q, lazy: true, middleware: false, method: undefined },
   { route: '/api/driver', handler: _lazy_Pl66US, lazy: true, middleware: false, method: undefined },
   { route: '/api/car', handler: _lazy_dBZ8Nj, lazy: true, middleware: false, method: undefined },
