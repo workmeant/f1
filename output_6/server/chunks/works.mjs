@@ -174,22 +174,31 @@ const works = defineEventHandler(async (event) => {
         "BGT_SP-\u0E1A\u0E32\u0E07\u0E04\u0E19\u0E17\u0E35"
       ];
       data.data.items.forEach(async (element) => {
-        var serial_no = element.base_info.serial_no;
-        var car_type = element.base_info.car_type;
         if (target_add1.indexOf(element.site_info[0].store_name) !== -1 && target_add2.indexOf(element.site_info[element.site_info.length - 1].store_name) !== -1) {
+          var serial_no = element.base_info.serial_no;
+          var car_type = element.base_info.car_type;
           const diriver_api = await driver(query.token);
           const car_api = await car_num(query.token, car_type);
+          console.log(serial_no);
+          console.log(car_type);
           console.log(diriver_api.data[diriver_api.data.length - 1].id);
           console.log(car_api.data[car_api.data.length - 1].id);
-          console.log(car_type);
           const add_work = await api_add_work(query.token, car_type, serial_no, car_api.data[car_api.data.length - 1].id, diriver_api.data[diriver_api.data.length - 1].id);
-          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name + " : " + add_work.code);
-          await linenotify("yotG770JJa5HbexW516KH4piMOYZ2e26vTVrVpZ89gs", "successful : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name + " : " + add_work.code);
+          const add_work2 = await api_add_work(query.token, car_type, serial_no, car_api.data[car_api.data.length - 2].id, diriver_api.data[diriver_api.data.length - 2].id);
+          const add_work3 = await api_add_work(query.token, car_type, serial_no, car_api.data[car_api.data.length - 3].id, diriver_api.data[diriver_api.data.length - 3].id);
+          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + add_work.message + " : " + add_work.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
+          await linenotify("a6Q86pvn5LoyRDXJgjADJ5C12xYzPDmxEb2CJPe3UEG", "successful : " + add_work.message + " : " + add_work.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
+          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + add_work2.message + " : " + add_work2.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
+          await linenotify("a6Q86pvn5LoyRDXJgjADJ5C12xYzPDmxEb2CJPe3UEG", "successful : " + add_work2.message + " : " + add_work2.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
+          await linenotify("ByNHFn35ax4szFzKGxa0Eeq5BhQb5190Q4TqfZTh1v7", "successful : " + add_work3.message + " : " + add_work3.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
+          await linenotify("a6Q86pvn5LoyRDXJgjADJ5C12xYzPDmxEb2CJPe3UEG", "successful : " + add_work3.message + " : " + add_work3.code + " : " + element.site_info[0].store_name + " : " + element.site_info[element.site_info.length - 1].store_name);
           work_add_1 = element.site_info[0].store_name;
           work_add_2 = element.site_info[element.site_info.length - 1].store_name;
           work_add_data = element.site_info;
           status = "successful";
           console.log(add_work);
+          console.log(add_work2);
+          console.log(add_work3);
         } else {
           work_add_1 = element.site_info[0].store_name;
           work_add_2 = element.site_info[element.site_info.length - 1].store_name;
