@@ -96,6 +96,11 @@ const works = defineEventHandler(async (event) => {
         build_v: "0.0.10"
       };
     }
+  } else {
+    return {
+      data,
+      status: "error"
+    };
   }
 });
 function find_work(driver_list, car_type, origin, destination, option) {
